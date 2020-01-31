@@ -1,0 +1,124 @@
+<html lang="en-US" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/placeholder-loading/dist/css/placeholder-loading.min.css">
+</head>
+<body>
+    <br>
+    <div class="container">
+        <h2 align="center">Make Skeleton Loader with Spring boot, thymeleaf & bootstrap</h2>
+        <br>
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Latest Posts</h4>
+            </div>
+            <div class="card-body" id="posts">
+                <div class="ph-item">
+                    <div class="ph-col-4">
+                        <div class="ph-picture"></div>
+                    </div>
+                    <div>
+                        <div class="ph-row">
+                            <div class="ph-col-12 big"></div>
+                            <div class="ph-col-12"></div>
+                            <div class="ph-col-12"></div>
+                            <div class="ph-col-12"></div>
+                            <div class="ph-col-12"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ph-item">
+                    <div class="ph-col-4">
+                        <div class="ph-picture"></div>
+                    </div>
+                    <div>
+                        <div class="ph-row">
+                            <div class="ph-col-12 big"></div>
+                            <div class="ph-col-12"></div>
+                            <div class="ph-col-12"></div>
+                            <div class="ph-col-12"></div>
+                            <div class="ph-col-12"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ph-item">
+                    <div class="ph-col-4">
+                        <div class="ph-picture"></div>
+                    </div>
+                    <div>
+                        <div class="ph-row">
+                            <div class="ph-col-12 big"></div>
+                            <div class="ph-col-12"></div>
+                            <div class="ph-col-12"></div>
+                            <div class="ph-col-12"></div>
+                            <div class="ph-col-12"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ph-item">
+                    <div class="ph-col-4">
+                        <div class="ph-picture"></div>
+                    </div>
+                    <div>
+                        <div class="ph-row">
+                            <div class="ph-col-12 big"></div>
+                            <div class="ph-col-12"></div>
+                            <div class="ph-col-12"></div>
+                            <div class="ph-col-12"></div>
+                            <div class="ph-col-12"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- our code goes here! -->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        $(function () {
+            function makeSkeleton(posts) {
+                let out = '';
+                for (let i in posts){
+                    out += '<div class="row">';
+                    out += '<div class="col-md-4">' +
+                        '<img src="' + posts[i].image + '" class="img-thumbnail">' +
+                        '</div>';
+                    out += '<div class="col-md-8">' +
+                        '<h2><a href="' + posts[i].url + '">' + posts[i].title + '</a></h2>' +
+                        '<br>' +
+                        '<p>' + posts[i].content + '</p>' +
+                        '</div>';
+                    out += '</div><hr>';
+                }
+                return out;
+            }
+
+            function loadData() {
+                $.ajax({
+                    url : /*[[@{/home/fetch}]]*/ "",
+                    method : "POST",
+                    success : function (data) {
+                        $('#posts').html(makeSkeleton(data));
+                    }
+                    ,error : function () {
+                        alert('An error occurred, please try again later!');
+                    }
+                });
+            }
+
+            setTimeout(function () {
+                loadData()
+            }, 5000);
+        });
+        /*]]>*/
+    </script>
+</body>
+</html>
