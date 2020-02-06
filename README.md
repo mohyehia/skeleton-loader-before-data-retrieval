@@ -12,8 +12,9 @@ Java 1.8 or greater, Spring boot 2.0 or greater, Maven, IntelliJ or Eclipse
  
 ### Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes:
-* Create two databases ('user', 'booking') for users db & bookings db.
+* Create a database for the application to connect.
 * import the project in IntelliJ or Eclipse.
+* generate some data in the posts table for testing purposes.
 * Or build the project using maven to get a jar file.
 
 ### Acknowledgments
